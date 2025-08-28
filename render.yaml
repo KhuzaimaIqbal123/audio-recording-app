@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: audio-recording-app
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn web_aud:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+
+  - type: redis
+    name: audio-app-redis
+    plan: free
+
+  - type: postgresql
+    name: audio-app-db
+    plan: free
