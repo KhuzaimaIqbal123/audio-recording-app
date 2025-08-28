@@ -1,0 +1,16 @@
+[phases.setup]
+nixPkgs = [
+    "python39",
+    "postgresql_16",  # Remove the .dev suffix
+    "ffmpeg-headless",
+    "gcc"
+]
+
+[phases.install]
+cmds = [
+    "python -m venv --copies /opt/venv",
+    ". /opt/venv/bin/activate && pip install -r requirements.txt"
+]
+
+[start]
+cmd = "gunicorn web_aud:app"
